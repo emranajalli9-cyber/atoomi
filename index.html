@@ -859,7 +859,19 @@ async function saveAll(){
 }
 
 /* ===================== INIT ===================== */
+// لود از localStorage اگر وجود داشت
 loadData().then(()=>{ observeReveals(); });
+  let saved = localStorage.getItem("settings");
+
+  if(saved){
+    try{
+      settings = JSON.parse(saved);
+      renderAll(); // دوباره رندر کن
+    }catch(e){
+      console.log("خطا در لود");
+    }
+  }
+}
 </script>
 </body>
 </html>
