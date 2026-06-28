@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATOM | فست‌فود و پیتزا</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+:root{
+  --primary:#ff6f1f;
+  --secondary:#ffffff;
+  --black:#1a1a1a;
+  --gray:#777;
+  --bg-body:#ffffff;
+  --bg-services:#fff8f3;
+  --bg-about:#fff8f3;
+  --bg-menu:#ffffff;
+  --bg-testi:#fff8f3;
+  --bg-faq:#ffffff;
+  --bg-contact:#ff6f1f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Vazirmatn',sans-serif;color:var(--black);background:var(--bg-body);overflow-x:hidden;}
+img{max-width:100%;display:block;}
+ul{list-style:none;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;}
+.container{max-width:1180px;margin:0 auto;padding:0 24px;}
+section{padding:90px 0;}
+h1,h2,h3{font-weight:800;}
+.section-title{text-align:center;font-size:2.1rem;margin-bottom:12px;}
+.section-sub{text-align:center;color:var(--gray);max-width:600px;margin:0 auto 46px;font-size:1.02rem;}
+.btn{display:inline-block;padding:13px 32px;border-radius:50px;background:var(--primary);color:#fff;font-weight:700;border:none;cursor:pointer;transition:.3s;box-shadow:0 10px 26px rgba(255,111,31,.25);}
+.btn:hover{filter:brightness(.9);transform:translateY(-3px);}
+.btn-outline{background:transparent;border:2px solid currentColor;}
+.hidden{display:none!important;}
+
+/* HEADER */
+header{position:fixed;top:0;width:100%;z-index:2000;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);box-shadow:0 2px 14px rgba(0,0,0,.06);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto;}
+.logo{font-size:1.7rem;font-weight:900;color:var(--primary);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-weight:600;cursor:pointer;}
+.nav-links a:hover{color:var(--primary);}
+.mode-switch{display:flex;background:#f1f1f1;border-radius:50px;padding:4px;gap:4px;}
+.mode-switch button{padding:7px 16px;border:none;border-radius:50px;background:transparent;cursor:pointer;font-weight:700;font-size:.85rem;}
+.mode-switch button.active{background:var(--primary);color:#fff;}
+.menu-toggle{display:none;font-size:1.7rem;background:none;border:none;color:var(--primary);cursor:pointer;}
+@media(max-width:900px){
+  .nav-links{position:fixed;top:64px;right:0;width:100%;background:#fff;flex-direction:column;max-height:0;overflow:hidden;transition:.4s;}
+  .nav-links.open{max-height:500px;padding-bottom:14px;}
+  .menu-toggle{display:block;}
+}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;background:linear-gradient(135deg,var(--primary),#cc4e00);color:#fff;overflow:hidden;}
+.hero-content{position:relative;z-index:2;text-align:center;width:100%;padding-top:80px;}
+.hero h1{font-size:3.6rem;margin-bottom:16px;}
+.hero .slogan{font-size:1.3rem;margin-bottom:10px;opacity:.95;}
+.hero .desc{max-width:640px;margin:0 auto 32px;opacity:.92;line-height:1.8;}
+.hero .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-outline{color:#fff;}
+.btn-outline:hover{background:#fff;color:var(--primary);}
+.scroll-down{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:1.6rem;animation:bounce 2s infinite;}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-10px)}}
+
+/* SLIDER */
+.slider-wrap{position:relative;border-radius:24px;overflow:hidden;height:340px;box-shadow:0 20px 40px rgba(0,0,0,.15);}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease,transform 6s ease;transform:scale(1);display:flex;align-items:center;justify-content:center;font-size:6rem;background-size:cover;background-position:center;color:#fff;}
+.slide.active{opacity:1;transform:scale(1.08);}
+.slide .cap{position:absolute;bottom:0;right:0;left:0;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:30px 24px 18px;font-size:1.3rem;font-weight:700;text-align:right;}
+.slider-dots{display:flex;gap:8px;justify-content:center;margin-top:16px;}
+.slider-dots span{width:10px;height:10px;border-radius:50%;background:#ddd;cursor:pointer;}
+.slider-dots span.active{background:var(--primary);}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(36px);transition:all .8s ease;}
+.reveal.active{opacity:1;transform:translateY(0);}
+
+/* SERVICES */
+#services{background:var(--bg-services);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;}
+.service-card{background:#fff;border-radius:18px;padding:32px 24px;text-align:center;transition:.3s;border:1px solid #eee;}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 16px 30px rgba(0,0,0,.08);}
+.service-icon{font-size:2.6rem;margin-bottom:14px;}
+
+/* ABOUT */
+#about{background:var(--bg-about);}
+.about-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:44px;align-items:center;}
+.about-text p{font-size:1.05rem;line-height:2;color:#444;margin-bottom:26px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.stat-box{background:#fff;border-radius:14px;padding:20px 8px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.05);}
+.stat-box .num{font-size:1.9rem;font-weight:900;color:var(--primary);}
+.stat-box .label{font-size:.85rem;color:var(--gray);margin-top:4px;}
+.about-visual{height:300px;border-radius:22px;background:linear-gradient(135deg,var(--primary),#cc4e00);display:flex;align-items:center;justify-content:center;font-size:5rem;}
+@media(max-width:880px){.about-inner{grid-template-columns:1fr}.about-visual{order:-1;height:200px}}
+
+/* MENU */
+#menu{background:var(--bg-menu);}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;}
+.menu-card{border-radius:18px;overflow:hidden;background:#fff;border:1px solid #eee;transition:.3s;}
+.menu-card:hover{box-shadow:0 16px 30px rgba(0,0,0,.1);transform:translateY(-6px);}
+.menu-img{height:170px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:3.2rem;background-color:#ffe9da;}
+.menu-info{padding:18px;}
+.menu-price{display:inline-block;margin-top:8px;font-weight:800;color:var(--primary);font-size:1.05rem;}
+
+/* TESTIMONIALS + FORM */
+#testimonials{background:var(--bg-testi);}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-bottom:44px;}
+.testi-card{background:#fff;border-radius:16px;padding:24px;border-top:4px solid var(--primary);}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.testi-person{display:flex;align-items:center;gap:12px;margin-top:14px;}
+.review-form{max-width:520px;margin:0 auto;background:#fff;padding:30px;border-radius:18px;box-shadow:0 10px 26px rgba(0,0,0,.06);}
+.review-form input,.review-form textarea{width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;margin-bottom:14px;font-family:inherit;}
+.review-form textarea{resize:vertical;min-height:90px;}
+
+/* FAQ */
+.faq-wrap{max-width:740px;margin:0 auto;}
+.faq-item{border-bottom:1px solid #eee;padding:16px 0;cursor:pointer;}
+.faq-q{display:flex;justify-content:space-between;font-weight:700;}
+.faq-q .icon{color:var(--primary);transition:.3s;}
+.faq-item.open .icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--gray);line-height:1.8;}
+.faq-item.open .faq-a{max-height:200px;padding-top:10px;}
+
+/* CONTACT */
+#contact{background:var(--bg-contact);color:#fff;}
+#contact .section-title,#contact .section-sub{color:#fff;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+.contact-info-list li{display:flex;gap:14px;align-items:center;margin-bottom:20px;font-size:1.02rem;}
+.contact-info-list .ic{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.social-row{display:flex;gap:12px;margin-top:8px;}
+.social-row a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;}
+.map-box{border-radius:18px;overflow:hidden;min-height:260px;}
+.map-box iframe{width:100%;height:100%;min-height:260px;border:0;}
+@media(max-width:880px){.contact-grid{grid-template-columns:1fr}}
+
+footer{background:var(--black);color:#bbb;text-align:center;padding:24px;font-size:.88rem;}
+footer span{color:var(--primary);font-weight:700;}
+
+.float-call{position:fixed;bottom:24px;left:24px;z-index:1500;background:var(--primary);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 8px 22px rgba(255,111,31,.5);}
+.float-music{position:fixed;bottom:24px;right:24px;z-index:1500;background:#fff;border:2px solid var(--primary);color:var(--primary);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;}
+
+/* ===== ADMIN ===== */
+#loginOverlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5000;display:flex;align-items:center;justify-content:center;}
+.login-box{background:#fff;padding:36px;border-radius:18px;width:90%;max-width:360px;text-align:center;}
+.login-box h3{margin-bottom:18px;}
+.login-box input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:14px;text-align:center;}
+.login-err{color:#e21b1b;font-size:.88rem;min-height:20px;margin-bottom:6px;}
+
+#adminPanel{position:fixed;inset:0;background:#f4f4f6;z-index:4000;overflow-y:auto;display:none;}
+.admin-header{background:#1a1a1a;color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;}
+.admin-header h2{font-size:1.2rem;}
+.admin-body{max-width:1100px;margin:0 auto;padding:30px 20px 80px;}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.admin-tabs button{padding:10px 18px;border:none;border-radius:10px;background:#fff;cursor:pointer;font-weight:700;font-size:.88rem;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+.admin-tabs button.active{background:var(--primary);color:#fff;}
+.admin-section{background:#fff;border-radius:16px;padding:26px;margin-bottom:20px;display:none;}
+.admin-section.active{display:block;}
+.admin-section h3{margin-bottom:18px;font-size:1.1rem;border-right:4px solid var(--primary);padding-right:10px;}
+.field-row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;margin-bottom:14px;}
+.field-row label{font-weight:600;font-size:.9rem;}
+.field-row input[type=text],.field-row input[type=number],.field-row input[type=tel],.field-row textarea{padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;width:100%;}
+.field-row input[type=color]{width:60px;height:38px;border:none;border-radius:8px;cursor:pointer;}
+.field-row textarea{min-height:70px;resize:vertical;}
+.item-card{border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:14px;background:#fafafa;position:relative;}
+.item-card .del-btn{position:absolute;left:12px;top:12px;background:#e21b1b;color:#fff;border:none;border-radius:8px;padding:4px 10px;cursor:pointer;font-size:.78rem;}
+.add-btn{background:#1a1a1a;color:#fff;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:700;margin-top:6px;}
+.save-bar{position:sticky;bottom:0;background:#fff;padding:14px 0;text-align:center;box-shadow:0 -4px 14px rgba(0,0,0,.06);margin-top:20px;border-radius:16px 16px 0 0;}
+.save-bar button{background:var(--primary);color:#fff;border:none;padding:13px 36px;border-radius:50px;font-weight:800;cursor:pointer;font-size:1rem;}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0;}
+.switch{position:relative;width:46px;height:24px;}
+.switch input{opacity:0;width:0;height:0;}
+.slider-toggle{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:24px;transition:.3s;}
+.slider-toggle:before{content:'';position:absolute;height:18px;width:18px;right:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;}
+.switch input:checked + .slider-toggle{background:var(--primary);}
+.switch input:checked + .slider-toggle:before{transform:translateX(-22px);}
+.review-admin-card{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border:1px solid #eee;border-radius:10px;padding:14px;margin-bottom:10px;}
+.review-admin-card .acts{display:flex;gap:6px;flex-shrink:0;}
+.review-admin-card .acts button{border:none;border-radius:6px;padding:6px 10px;font-size:.78rem;cursor:pointer;color:#fff;}
+.approve-btn{background:#1ca34d;}
+.delbtn{background:#e21b1b;}
+.status-pill{font-size:.72rem;padding:2px 8px;border-radius:10px;background:#eee;margin-right:6px;}
+.status-pill.ok{background:#d6f5e1;color:#1ca34d;}
+.status-pill.pending{background:#ffe9cc;color:#a85a00;}
+.note{font-size:.82rem;color:#888;margin-top:-6px;margin-bottom:14px;}
+@media(max-width:700px){.field-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav class="nav">
+    <div class="logo" id="logoText">ATOM</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a onclick="closeMenu()" href="#home">خانه</a></li>
+      <li><a onclick="closeMenu()" href="#services">خدمات</a></li>
+      <li><a onclick="closeMenu()" href="#about">درباره ما</a></li>
+      <li><a onclick="closeMenu()" href="#menu">محصولات</a></li>
+      <li><a onclick="closeMenu()" href="#testimonials">نظرات</a></li>
+      <li><a onclick="closeMenu()" href="#faq">سوالات</a></li>
+      <li><a onclick="closeMenu()" href="#contact">تماس</a></li>
+      <li class="mode-switch">
+        <button id="btnPublic" class="active" onclick="setMode('public')">عمومی</button>
+        <button id="btnAdmin" onclick="setMode('admin')">مدیریت</button>
+      </li>
+    </ul>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </nav>
+</header>
+
+<!-- PUBLIC SITE -->
+<main id="publicSite">
+
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <h1 id="heroTitle">ATOM</h1>
+      <p class="slogan" id="heroSlogan">اعتماد شما اعتبار ماست</p>
+      <p class="desc" id="heroDesc">فست‌فود اتم — اینجا کیفیت غذا حرف اول را می‌زند. طعم واقعی پیتزا و فست‌فود با بهترین مواد اولیه، تازه و داغ روی میز شما.</p>
+      <div class="btns">
+        <a href="#menu" class="btn">مشاهده محصولات</a>
+        <a id="heroCallBtn" href="tel:025332803838" class="btn btn-outline">تماس سریع</a>
+      </div>
+    </div>
+    <div class="scroll-down">↓</div>
+  </section>
+
+  <section id="sliderSection">
+    <div class="container">
+      <h2 class="section-title reveal">ویژه‌های اتم</h2>
+      <p class="section-sub reveal">جدیدترین و خاص‌ترین پیشنهادهای فست‌فود اتم</p>
+      <div class="slider-wrap reveal" id="sliderWrap"></div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title reveal">خدمات ما</h2>
+      <p class="section-sub reveal">تنوعی از بهترین غذاهای فست‌فودی با کیفیت تضمینی</p>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title reveal">درباره ما</h2>
+      <div class="about-inner">
+        <div class="about-text reveal">
+          <p id="aboutText">فست‌فود اتم با هدف ارائه غذایی سالم، تازه و خوشمزه تأسیس شد. کیفیت غذا برای ما حرف اول را می‌زند.</p>
+          <div class="stats" id="statsGrid"></div>
+        </div>
+        <div class="about-visual reveal">🍕</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <h2 class="section-title reveal">محصولات اتم</h2>
+      <p class="section-sub reveal">بخشی از پرفروش‌ترین آیتم‌های منوی ما</p>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title reveal">نظرات مشتریان</h2>
+      <p class="section-sub reveal">آنچه مشتریان درباره اتم می‌گویند</p>
+      <div class="testi-grid" id="testiGrid"></div>
+      <h3 style="text-align:center;margin-bottom:20px;">نظر خودتان را ثبت کنید</h3>
+      <form class="review-form reveal" id="reviewForm">
+        <input type="text" id="rvName" placeholder="نام شما" required>
+        <textarea id="rvText" placeholder="نظر شما درباره اتم..." required></textarea>
+        <button type="submit" class="btn" style="width:100%;">ثبت نظر</button>
+      </form>
+      <p style="text-align:center;color:var(--gray);font-size:.85rem;margin-top:10px;">نظرات پس از تأیید مدیر نمایش داده می‌شوند.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title reveal">سوالات متداول</h2>
+      <div class="faq-wrap" id="faqWrap"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title reveal">تماس با ما</h2>
+      <div class="contact-grid">
+        <div class="reveal">
+          <ul class="contact-info-list">
+            <li><div class="ic">📞</div><div id="contactPhone">025332803838</div></li>
+            <li><div class="ic">📍</div><div id="contactAddress">پردیسان، خیابان البرز، بین البرز ۱۷/۱۵، فست‌فود اتم</div></li>
+          </ul>
+          <div class="social-row" id="socialRow"></div>
+        </div>
+        <div class="map-box reveal" id="mapBox"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="mainFooter">
+  تمامی حقوق محفوظ است &copy; <span>ATOM</span> 2026
+</footer>
+
+<a id="floatCallBtn" href="tel:025332803838" class="float-call" title="تماس فوری">📞</a>
+<button class="float-music" id="musicToggle" title="پخش/قطع موزیک">🔇</button>
+<audio id="bgMusic" loop></audio>
+
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay" class="hidden">
+  <div class="login-box">
+    <h3>ورود به پنل مدیریت</h3>
+    <input type="password" id="adminPassInput" placeholder="رمز عبور">
+    <div class="login-err" id="loginErr"></div>
+    <button class="btn" style="width:100%;margin-bottom:10px;" onclick="tryLogin()">ورود</button>
+    <button class="btn btn-outline" style="width:100%;color:#333;" onclick="cancelLogin()">انصراف</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <div class="admin-header">
+    <h2>پنل مدیریت ATOM</h2>
+    <div style="display:flex;gap:10px;">
+      <button class="btn" onclick="saveAll()">ذخیره همه تغییرات</button>
+      <button class="btn btn-outline" style="color:#fff;" onclick="logoutAdmin()">خروج و مشاهده سایت</button>
+    </div>
+  </div>
+  <div class="admin-body">
+    <div class="admin-tabs">
+      <button class="active" onclick="adminTab('appearance')">🎨 ظاهر</button>
+      <button onclick="adminTab('texts')">✏️ متن‌ها</button>
+      <button onclick="adminTab('slider')">🖼 اسلایدر</button>
+      <button onclick="adminTab('products')">🍕 محصولات</button>
+      <button onclick="adminTab('sections')">🧩 سکشن‌ها</button>
+      <button onclick="adminTab('contact')">📍 تماس</button>
+      <button onclick="adminTab('reviews')">💬 نظرات</button>
+      <button onclick="adminTab('music')">🎵 موزیک</button>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="admin-section active" id="tab-appearance">
+      <h3>رنگ‌ها و بک‌گراندها</h3>
+      <div class="field-row"><label>رنگ اصلی (نارنجی)</label><input type="color" id="cPrimary"></div>
+      <div class="field-row"><label>رنگ ثانویه</label><input type="color" id="cSecondary"></div>
+      <div class="field-row"><label>بک‌گراند کل سایت</label><input type="color" id="cBgBody"></div>
+      <div class="field-row"><label>بک‌گراند خدمات</label><input type="color" id="cBgServices"></div>
+      <div class="field-row"><label>بک‌گراند درباره ما</label><input type="color" id="cBgAbout"></div>
+      <div class="field-row"><label>بک‌گراند محصولات</label><input type="color" id="cBgMenu"></div>
+      <div class="field-row"><label>بک‌گراند نظرات</label><input type="color" id="cBgTesti"></div>
+      <div class="field-row"><label>بک‌گراند تماس</label><input type="color" id="cBgContact"></div>
+      <div class="field-row"><label>متن لوگو</label><input type="text" id="iLogo"></div>
+    </div>
+
+    <!-- TEXTS -->
+    <div class="admin-section" id="tab-texts">
+      <h3>متن‌های اصلی هیرو و درباره ما</h3>
+      <div class="field-row"><label>عنوان هیرو</label><input type="text" id="tHeroTitle"></div>
+      <div class="field-row"><label>شعار</label><input type="text" id="tHeroSlogan"></div>
+      <div class="field-row"><label>توضیح هیرو</label><textarea id="tHeroDesc"></textarea></div>
+      <div class="field-row"><label>متن درباره ما</label><textarea id="tAboutText"></textarea></div>
+      <h3 style="margin-top:24px;">آمار / دستاوردها</h3>
+      <div id="statsAdminList"></div>
+      <h3 style="margin-top:24px;">سوالات متداول</h3>
+      <div id="faqAdminList"></div>
+      <button class="add-btn" onclick="addFaq()">+ افزودن سوال</button>
+    </div>
+
+    <!-- SLIDER -->
+    <div class="admin-section" id="tab-slider">
+      <h3>اسلایدر ویژه‌های اتم</h3>
+      <p class="note">برای هر اسلاید یک لینک تصویر (URL) و کپشن وارد کنید. اگر لینک خالی باشد به‌جای عکس یک ایموجی نمایش داده می‌شود.</p>
+      <div id="sliderAdminList"></div>
+      <button class="add-btn" onclick="addSlide()">+ افزودن اسلاید</button>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="admin-section" id="tab-products">
+      <h3>محصولات (منو)</h3>
+      <div id="productsAdminList"></div>
+      <button class="add-btn" onclick="addProduct()">+ افزودن محصول</button>
+      <h3 style="margin-top:30px;">خدمات (کارت‌های بالای صفحه)</h3>
+      <div id="servicesAdminList"></div>
+      <button class="add-btn" onclick="addService()">+ افزودن خدمت</button>
+    </div>
+
+    <!-- SECTIONS -->
+    <div class="admin-section" id="tab-sections">
+      <h3>نمایش / مخفی کردن سکشن‌ها</h3>
+      <div id="sectionsToggleList"></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="admin-section" id="tab-contact">
+      <h3>اطلاعات تماس و لوکیشن</h3>
+      <div class="field-row"><label>شماره تماس</label><input type="tel" id="cnPhone"></div>
+      <div class="field-row"><label>آدرس</label><input type="text" id="cnAddress"></div>
+      <div class="field-row"><label>لینک نقشه (Embed Google Maps)</label><input type="text" id="cnMapEmbed" placeholder="https://www.google.com/maps/embed?..."></div>
+      <h3 style="margin-top:24px;">شبکه‌های اجتماعی</h3>
+      <div class="field-row"><label>اینستاگرام (لینک)</label><input type="text" id="snInstagram"></div>
+      <div class="field-row"><label>تلگرام (لینک)</label><input type="text" id="snTelegram"></div>
+      <div class="field-row"><label>واتساپ (لینک)</label><input type="text" id="snWhatsapp"></div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="admin-section" id="tab-reviews">
+      <h3>مدیریت نظرات کاربران</h3>
+      <div id="reviewsAdminList"></div>
+    </div>
+
+    <!-- MUSIC -->
+    <div class="admin-section" id="tab-music">
+      <h3>موزیک پس‌زمینه</h3>
+      <div class="field-row"><label>لینک فایل MP3</label><input type="text" id="mMusicUrl" placeholder="https://example.com/song.mp3"></div>
+      <div class="toggle-row"><span>پخش خودکار هنگام ورود</span>
+        <label class="switch"><input type="checkbox" id="mAutoplay"><span class="slider-toggle"></span></label>
+      </div>
+      <p class="note">به دلیل سیاست مرورگرها، پخش خودکار با صدا معمولاً نیاز به یک تعامل اولیه کاربر (مثل کلیک) دارد.</p>
+    </div>
+
+    <div class="save-bar">
+      <button onclick="saveAll()">💾 ذخیره همه تغییرات روی سایت</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===================== DEFAULT SETTINGS ===================== */
+const defaultSettings = {
+  colors:{primary:"#ff6f1f",secondary:"#ffffff",bgBody:"#ffffff",bgServices:"#fff8f3",bgAbout:"#fff8f3",bgMenu:"#ffffff",bgTesti:"#fff8f3",bgContact:"#ff6f1f"},
+  logo:"ATOM",
+  hero:{title:"ATOM",slogan:"اعتماد شما اعتبار ماست",desc:"فست‌فود اتم — اینجا کیفیت غذا حرف اول را می‌زند. طعم واقعی پیتزا و فست‌فود با بهترین مواد اولیه، تازه و داغ روی میز شما."},
+  about:{text:"فست‌فود اتم با هدف ارائه غذایی سالم، تازه و خوشمزه تأسیس شد. کیفیت غذا برای ما حرف اول را می‌زند و تمام مواد اولیه به‌صورت روزانه تهیه می‌شود.",
+    stats:[{num:"+5000",label:"مشتری راضی"},{num:"+50",label:"آیتم منو"},{num:"۲۴/۷",label:"پذیرش سفارش"}]},
+  faq:[
+    {q:"زمان تقریبی ارسال سفارش چقدر است؟",a:"سفارشات شما معمولاً بین ۳۰ تا ۴۵ دقیقه پس از ثبت، تحویل داده می‌شود."},
+    {q:"آیا امکان سفارش تلفنی وجود دارد؟",a:"بله، می‌توانید با شماره تماس درج‌شده تماس بگیرید و سفارش خود را ثبت کنید."},
+    {q:"آیا امکان پرداخت آنلاین وجود دارد؟",a:"بله، پرداخت هم نقدی هنگام تحویل و هم به‌صورت آنلاین امکان‌پذیر است."}
+  ],
+  slides:[
+    {img:"",emoji:"🍕",caption:"پیتزای مخصوص اتم"},
+    {img:"",emoji:"🍔",caption:"برگر تازه و خوش‌طعم"},
+    {img:"",emoji:"🍟",caption:"سوخاری‌های ترد اتم"}
+  ],
+  services:[
+    {icon:"🍕",title:"انواع پیتزا",desc:"پیتزاهای متنوع با خمیر تازه و سس مخصوص اتم."},
+    {icon:"🍔",title:"همبرگر و ساندویچ",desc:"برگر دست‌ساز با گوشت تازه و نان مخصوص."},
+    {icon:"🍟",title:"پیش‌غذا و سوخاری",desc:"سیب‌زمینی و ناگت ترد و خوش‌طعم."}
+  ],
+  products:[
+    {img:"",emoji:"🍕",title:"پیتزا مخصوص اتم",desc:"پپرونی، قارچ، فلفل دلمه و پنیر مخصوص.",price:"۱۸۵,۰۰۰ تومان"},
+    {img:"",emoji:"🍔",title:"برگر اتم",desc:"برگر گوشت ۱۵۰ گرمی با سس مخصوص.",price:"۱۲۰,۰۰۰ تومان"},
+    {img:"",emoji:"🍗",title:"چیکن استریپس",desc:"تکه‌های مرغ سوخاری ترد.",price:"۹۵,۰۰۰ تومان"}
+  ],
+  sections:{slider:true,services:true,about:true,menu:true,testimonials:true,faq:true,contact:true},
+  contact:{phone:"025332803838",address:"پردیسان، خیابان البرز، بین البرز ۱۷/۱۵، فست‌فود اتم",mapEmbed:""},
+  social:{instagram:"",telegram:"",whatsapp:""},
+  music:{url:"",autoplay:false}
+};
+let settings = JSON.parse(JSON.stringify(defaultSettings));
+let reviews = []; // {id,name,text,approved}
+
+/* ===================== STORAGE ===================== */
+async function loadData(){
+  try{
+    const r = await window.storage.get('atom-settings', true);
+    if(r && r.value) settings = Object.assign(JSON.parse(JSON.stringify(defaultSettings)), JSON.parse(r.value));
+  }catch(e){ /* no settings yet, use defaults */ }
+  try{
+    const r2 = await window.storage.get('atom-reviews', true);
+    if(r2 && r2.value) reviews = JSON.parse(r2.value);
+  }catch(e){ reviews = [
+    {id:1,name:"محمدرضا کریمی",text:"غذا فوق‌العاده تازه و گرم به دستم رسید. پیتزای اتم واقعاً متفاوته!",approved:true},
+    {id:2,name:"سارا احمدی",text:"برگرشون عالیه و قیمتش هم منصفانه‌ست.",approved:true}
+  ]; }
+  renderAll();
+}
+async function persistSettings(){
+  try{ await window.storage.set('atom-settings', JSON.stringify(settings), true); }catch(e){console.error(e);}
+}
+async function persistReviews(){
+  try{ await window.storage.set('atom-reviews', JSON.stringify(reviews), true); }catch(e){console.error(e);}
+}
+
+/* ===================== RENDER PUBLIC ===================== */
+function applyColors(){
+  const c = settings.colors;
+  const root = document.documentElement.style;
+  root.setProperty('--primary',c.primary);
+  root.setProperty('--secondary',c.secondary);
+  root.setProperty('--bg-body',c.bgBody);
+  root.setProperty('--bg-services',c.bgServices);
+  root.setProperty('--bg-about',c.bgAbout);
+  root.setProperty('--bg-menu',c.bgMenu);
+  root.setProperty('--bg-testi',c.bgTesti);
+  root.setProperty('--bg-contact',c.bgContact);
+  document.getElementById('logoText').textContent = settings.logo;
+}
+function renderHero(){
+  document.getElementById('heroTitle').textContent = settings.hero.title;
+  document.getElementById('heroSlogan').textContent = settings.hero.slogan;
+  document.getElementById('heroDesc').textContent = settings.hero.desc;
+}
+function renderSlider(){
+  const wrap = document.getElementById('sliderWrap');
+  const dots = document.getElementById('sliderDots');
+  wrap.innerHTML=''; dots.innerHTML='';
+  settings.slides.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'slide'+(i===0?' active':'');
+    if(s.img){ d.style.backgroundImage = `url('${s.img}')`; d.textContent=''; }
+    else { d.textContent = s.emoji||'🍕'; }
+    const cap = document.createElement('div'); cap.className='cap'; cap.textContent = s.caption||'';
+    d.appendChild(cap);
+    wrap.appendChild(d);
+    const dot = document.createElement('span'); if(i===0) dot.classList.add('active');
+    dot.onclick=()=>goSlide(i);
+    dots.appendChild(dot);
+  });
+  startSlider();
+}
+let sliderIdx=0, sliderInterval;
+function startSlider(){
+  clearInterval(sliderInterval);
+  const slides = document.querySelectorAll('.slide');
+  if(slides.length<2) return;
+  sliderInterval = setInterval(()=>goSlide((sliderIdx+1)%slides.length),4500);
+}
+function goSlide(i){
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slider-dots span');
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[i].classList.add('active'); dots[i].classList.add('active');
+  sliderIdx=i;
+}
+function renderServices(){
+  const grid = document.getElementById('servicesGrid'); grid.innerHTML='';
+  settings.services.forEach(s=>{
+    grid.innerHTML += `<div class="service-card reveal"><div class="service-icon">${s.icon}</div><h3>${s.title}</h3><p style="color:var(--gray);line-height:1.8;">${s.desc}</p></div>`;
+  });
+  observeReveals();
+}
+function renderAbout(){
+  document.getElementById('aboutText').textContent = settings.about.text;
+  const sg = document.getElementById('statsGrid'); sg.innerHTML='';
+  settings.about.stats.forEach(s=>{
+    sg.innerHTML += `<div class="stat-box"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`;
+  });
+}
+function renderProducts(){
+  const grid = document.getElementById('menuGrid'); grid.innerHTML='';
+  settings.products.forEach(p=>{
+    const imgStyle = p.img ? `style="background-image:url('${p.img}')"` : '';
+    grid.innerHTML += `<div class="menu-card reveal">
+      <div class="menu-img" ${imgStyle}>${p.img?'':(p.emoji||'🍕')}</div>
+      <div class="menu-info"><h3>${p.title}</h3><p style="color:var(--gray);font-size:.92rem;">${p.desc}</p><div class="menu-price">${p.price||''}</div></div>
+    </div>`;
+  });
+  observeReveals();
+}
+function renderFaq(){
+  const wrap = document.getElementById('faqWrap'); wrap.innerHTML='';
+  settings.faq.forEach(f=>{
+    wrap.innerHTML += `<div class="faq-item reveal"><div class="faq-q"><span>${f.q}</span><span class="icon">+</span></div><div class="faq-a">${f.a}</div></div>`;
+  });
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!open) item.classList.add('open');
+    });
+  });
+  observeReveals();
+}
+function renderReviewsPublic(){
+  const grid = document.getElementById('testiGrid'); grid.innerHTML='';
+  reviews.filter(r=>r.approved).forEach(r=>{
+    grid.innerHTML += `<div class="testi-card reveal"><p>${r.text}</p><div class="testi-person"><div class="testi-avatar">${(r.name||'؟').slice(0,1)}</div><div><h4>${r.name}</h4></div></div></div>`;
+  });
+  observeReveals();
+}
+function renderContact(){
+  document.getElementById('contactPhone').textContent = settings.contact.phone;
+  document.getElementById('contactAddress').textContent = settings.contact.address;
+  document.getElementById('heroCallBtn').href = 'tel:'+settings.contact.phone.replace(/\s/g,'');
+  document.getElementById('floatCallBtn').href = 'tel:'+settings.contact.phone.replace(/\s/g,'');
+  const map = document.getElementById('mapBox');
+  map.innerHTML = settings.contact.mapEmbed
+    ? `<iframe src="${settings.contact.mapEmbed}" loading="lazy"></iframe>`
+    : `<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:260px;background:rgba(255,255,255,.12);font-size:3.5rem;">📍</div>`;
+  const social = document.getElementById('socialRow'); social.innerHTML='';
+  if(settings.social.instagram) social.innerHTML += `<a href="${settings.social.instagram}" target="_blank">📷</a>`;
+  if(settings.social.telegram) social.innerHTML += `<a href="${settings.social.telegram}" target="_blank">✈️</a>`;
+  if(settings.social.whatsapp) social.innerHTML += `<a href="${settings.social.whatsapp}" target="_blank">💬</a>`;
+}
+function renderSectionsVisibility(){
+  const map = {slider:'sliderSection',services:'services',about:'about',menu:'menu',testimonials:'testimonials',faq:'faq',contact:'contact'};
+  Object.keys(map).forEach(k=>{
+    const el = document.getElementById(map[k]);
+    if(el) el.style.display = settings.sections[k] ? '' : 'none';
+  });
+}
+function renderMusic(){
+  const audio = document.getElementById('bgMusic');
+  if(settings.music.url){ audio.src = settings.music.url; }
+  if(settings.music.autoplay){
+    audio.muted = false;
+    audio.play().then(()=>{document.getElementById('musicToggle').textContent='🔊';}).catch(()=>{});
+  }
+}
+function renderAll(){
+  applyColors(); renderHero(); renderSlider(); renderServices(); renderAbout();
+  renderProducts(); renderFaq(); renderReviewsPublic(); renderContact(); renderSectionsVisibility(); renderMusic();
+  fillAdminForm();
+}
+
+/* ===================== REVEAL OBSERVER ===================== */
+let observer;
+function observeReveals(){
+  if(!observer){
+    observer = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); observer.unobserve(e.target); } });
+    },{threshold:.12});
+  }
+  document.querySelectorAll('.reveal:not(.active)').forEach(el=>observer.observe(el));
+}
+
+/* ===================== MUSIC BUTTON ===================== */
+document.getElementById('musicToggle').onclick = ()=>{
+  const audio = document.getElementById('bgMusic');
+  if(!settings.music.url){ alert('هنوز لینک موزیکی توسط مدیر تنظیم نشده است.'); return; }
+  if(audio.paused){ audio.play(); document.getElementById('musicToggle').textContent='🔊'; }
+  else { audio.pause(); document.getElementById('musicToggle').textContent='🔇'; }
+};
+
+/* ===================== REVIEW FORM ===================== */
+document.getElementById('reviewForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('rvName').value.trim();
+  const text = document.getElementById('rvText').value.trim();
+  if(!name||!text) return;
+  reviews.push({id:Date.now(), name, text, approved:false});
+  await persistReviews();
+  document.getElementById('reviewForm').reset();
+  alert('نظر شما ثبت شد و پس از تأیید مدیر نمایش داده می‌شود. سپاس از شما 🙏');
+  renderReviewAdminList();
+});
+
+/* ===================== NAV / MODE ===================== */
+function closeMenu(){ document.getElementById('navLinks').classList.remove('open'); }
+function setMode(mode){
+  if(mode==='admin'){
+    document.getElementById('loginOverlay').classList.remove('hidden');
+    document.getElementById('adminPassInput').value='';
+    document.getElementById('loginErr').textContent='';
+  } else {
+    document.getElementById('adminPanel').style.display='none';
+    document.getElementById('publicSite').style.display='';
+    document.getElementById('mainFooter').style.display='';
+    document.getElementById('btnPublic').classList.add('active');
+    document.getElementById('btnAdmin').classList.remove('active');
+  }
+}
+function cancelLogin(){ document.getElementById('loginOverlay').classList.add('hidden'); }
+function tryLogin(){
+  const val = document.getElementById('adminPassInput').value;
+  if(val === '09921766083'){
+    document.getElementById('loginOverlay').classList.add('hidden');
+    document.getElementById('publicSite').style.display='none';
+    document.getElementById('mainFooter').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    document.getElementById('btnAdmin').classList.add('active');
+    document.getElementById('btnPublic').classList.remove('active');
+    fillAdminForm();
+  } else {
+    document.getElementById('loginErr').textContent = 'ورود شما امکان‌پذیر نیست';
+  }
+}
+function logoutAdmin(){ setMode('public'); }
+function adminTab(name){
+  document.querySelectorAll('.admin-tabs button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  [...document.querySelectorAll('.admin-tabs button')].find(b=>b.getAttribute('onclick').includes(name)).classList.add('active');
+}
+
+/* ===================== ADMIN FORM FILL ===================== */
+function fillAdminForm(){
+  const c = settings.colors;
+  document.getElementById('cPrimary').value=c.primary;
+  document.getElementById('cSecondary').value=c.secondary;
+  document.getElementById('cBgBody').value=c.bgBody;
+  document.getElementById('cBgServices').value=c.bgServices;
+  document.getElementById('cBgAbout').value=c.bgAbout;
+  document.getElementById('cBgMenu').value=c.bgMenu;
+  document.getElementById('cBgTesti').value=c.bgTesti;
+  document.getElementById('cBgContact').value=c.bgContact;
+  document.getElementById('iLogo').value=settings.logo;
+
+  document.getElementById('tHeroTitle').value=settings.hero.title;
+  document.getElementById('tHeroSlogan').value=settings.hero.slogan;
+  document.getElementById('tHeroDesc').value=settings.hero.desc;
+  document.getElementById('tAboutText').value=settings.about.text;
+
+  renderStatsAdmin(); renderFaqAdmin(); renderSliderAdmin(); renderProductsAdmin(); renderServicesAdmin();
+  renderSectionsToggle(); renderReviewAdminList();
+
+  document.getElementById('cnPhone').value=settings.contact.phone;
+  document.getElementById('cnAddress').value=settings.contact.address;
+  document.getElementById('cnMapEmbed').value=settings.contact.mapEmbed;
+  document.getElementById('snInstagram').value=settings.social.instagram;
+  document.getElementById('snTelegram').value=settings.social.telegram;
+  document.getElementById('snWhatsapp').value=settings.social.whatsapp;
+  document.getElementById('mMusicUrl').value=settings.music.url;
+  document.getElementById('mAutoplay').checked=settings.music.autoplay;
+}
+
+function renderStatsAdmin(){
+  const c = document.getElementById('statsAdminList'); c.innerHTML='';
+  settings.about.stats.forEach((s,i)=>{
+    c.innerHTML += `<div class="item-card">
+      <button class="del-btn" onclick="removeStat(${i})">حذف</button>
+      <div class="field-row"><label>عدد</label><input type="text" value="${s.num}" onchange="settings.about.stats[${i}].num=this.value"></div>
+      <div class="field-row"><label>توضیح</label><input type="text" value="${s.label}" onchange="settings.about.stats[${i}].label=this.value"></div>
+    </div>`;
+  });
+}
+function removeStat(i){ settings.about.stats.splice(i,1); renderStatsAdmin(); }
+
+function renderFaqAdmin(){
+  const c = document.getElementById('faqAdminList'); c.innerHTML='';
+  settings.faq.forEach((f,i)=>{
+    c.innerHTML += `<div class="item-card">
+      <button class="del-btn" onclick="removeFaq(${i})">حذف</button>
+      <div class="field-row"><label>سوال</label><input type="text" value="${f.q}" onchange="settings.faq[${i}].q=this.value"></div>
+      <div class="field-row"><label>جواب</label><textarea onchange="settings.faq[${i}].a=this.value">${f.a}</textarea></div>
+    </div>`;
+  });
+}
+function addFaq(){ settings.faq.push({q:'سوال جدید',a:'پاسخ را اینجا بنویسید'}); renderFaqAdmin(); }
+function removeFaq(i){ settings.faq.splice(i,1); renderFaqAdmin(); }
+
+function renderSliderAdmin(){
+  const c = document.getElementById('sliderAdminList'); c.innerHTML='';
+  settings.slides.forEach((s,i)=>{
+    c.innerHTML += `<div class="item-card">
+      <button class="del-btn" onclick="removeSlide(${i})">حذف</button>
+      <div class="field-row"><label>لینک تصویر</label><input type="text" value="${s.img||''}" onchange="settings.slides[${i}].img=this.value" placeholder="https://..."></div>
+      <div class="field-row"><label>ایموجی جایگزین</label><input type="text" value="${s.emoji||''}" onchange="settings.slides[${i}].emoji=this.value" placeholder="🍕"></div>
+      <div class="field-row"><label>کپشن</label><input type="text" value="${s.caption||''}" onchange="settings.slides[${i}].caption=this.value"></div>
+    </div>`;
+  });
+}
+function addSlide(){ settings.slides.push({img:'',emoji:'🍕',caption:'کپشن جدید'}); renderSliderAdmin(); }
+function removeSlide(i){ settings.slides.splice(i,1); renderSliderAdmin(); }
+
+function renderProductsAdmin(){
+  const c = document.getElementById('productsAdminList'); c.innerHTML='';
+  settings.products.forEach((p,i)=>{
+    c.innerHTML += `<div class="item-card">
+      <button class="del-btn" onclick="removeProduct(${i})">حذف</button>
+      <div class="field-row"><label>عنوان</label><input type="text" value="${p.title}" onchange="settings.products[${i}].title=this.value"></div>
+      <div class="field-row"><label>توضیح</label><input type="text" value="${p.desc}" onchange="settings.products[${i}].desc=this.value"></div>
+      <div class="field-row"><label>قیمت</label><input type="text" value="${p.price||''}" onchange="settings.products[${i}].price=this.value"></div>
+      <div class="field-row"><label>لینک تصویر</label><input type="text" value="${p.img||''}" onchange="settings.products[${i}].img=this.value" placeholder="https://..."></div>
+      <div class="field-row"><label>ایموجی جایگزین</label><input type="text" value="${p.emoji||''}" onchange="settings.products[${i}].emoji=this.value"></div>
+    </div>`;
+  });
+}
+function addProduct(){ settings.products.push({img:'',emoji:'🍕',title:'محصول جدید',desc:'توضیحات محصول',price:'۰ تومان'}); renderProductsAdmin(); }
+function removeProduct(i){ settings.products.splice(i,1); renderProductsAdmin(); }
+
+function renderServicesAdmin(){
+  const c = document.getElementById('servicesAdminList'); c.innerHTML='';
+  settings.services.forEach((s,i)=>{
+    c.innerHTML += `<div class="item-card">
+      <button class="del-btn" onclick="removeService(${i})">حذف</button>
+      <div class="field-row"><label>آیکون</label><input type="text" value="${s.icon}" onchange="settings.services[${i}].icon=this.value"></div>
+      <div class="field-row"><label>عنوان</label><input type="text" value="${s.title}" onchange="settings.services[${i}].title=this.value"></div>
+      <div class="field-row"><label>توضیح</label><input type="text" value="${s.desc}" onchange="settings.services[${i}].desc=this.value"></div>
+    </div>`;
+  });
+}
+function addService(){ settings.services.push({icon:'🍕',title:'خدمت جدید',desc:'توضیحات'}); renderServicesAdmin(); }
+function removeService(i){ settings.services.splice(i,1); renderServicesAdmin(); }
+
+function renderSectionsToggle(){
+  const labels = {slider:'اسلایدر ویژه‌ها',services:'خدمات',about:'درباره ما',menu:'محصولات',testimonials:'نظرات',faq:'سوالات متداول',contact:'تماس با ما'};
+  const c = document.getElementById('sectionsToggleList'); c.innerHTML='';
+  Object.keys(labels).forEach(k=>{
+    c.innerHTML += `<div class="toggle-row"><span>${labels[k]}</span>
+      <label class="switch"><input type="checkbox" ${settings.sections[k]?'checked':''} onchange="settings.sections['${k}']=this.checked"><span class="slider-toggle"></span></label>
+    </div>`;
+  });
+}
+
+function renderReviewAdminList(){
+  const c = document.getElementById('reviewsAdminList'); c.innerHTML='';
+  if(reviews.length===0){ c.innerHTML='<p style="color:#999;">هنوز نظری ثبت نشده است.</p>'; return; }
+  reviews.slice().reverse().forEach(r=>{
+    c.innerHTML += `<div class="review-admin-card">
+      <div>
+        <span class="status-pill ${r.approved?'ok':'pending'}">${r.approved?'تأیید شده':'در انتظار تأیید'}</span>
+        <strong>${r.name}</strong>
+        <p style="margin-top:6px;color:#555;">${r.text}</p>
+      </div>
+      <div class="acts">
+        <button class="approve-btn" onclick="toggleApprove(${r.id})">${r.approved?'لغو تأیید':'تأیید'}</button>
+        <button class="delbtn" onclick="deleteReview(${r.id})">حذف</button>
+      </div>
+    </div>`;
+  });
+}
+async function toggleApprove(id){
+  const r = reviews.find(x=>x.id===id); if(r){ r.approved=!r.approved; await persistReviews(); renderReviewAdminList(); renderReviewsPublic(); }
+}
+async function deleteReview(id){
+  reviews = reviews.filter(x=>x.id!==id); await persistReviews(); renderReviewAdminList(); renderReviewsPublic();
+}
+
+/* ===================== SAVE ALL ===================== */
+async function saveAll(){
+  settings.colors.primary=document.getElementById('cPrimary').value;
+  settings.colors.secondary=document.getElementById('cSecondary').value;
+  settings.colors.bgBody=document.getElementById('cBgBody').value;
+  settings.colors.bgServices=document.getElementById('cBgServices').value;
+  settings.colors.bgAbout=document.getElementById('cBgAbout').value;
+  settings.colors.bgMenu=document.getElementById('cBgMenu').value;
+  settings.colors.bgTesti=document.getElementById('cBgTesti').value;
+  settings.colors.bgContact=document.getElementById('cBgContact').value;
+  settings.logo=document.getElementById('iLogo').value;
+
+  settings.hero.title=document.getElementById('tHeroTitle').value;
+  settings.hero.slogan=document.getElementById('tHeroSlogan').value;
+  settings.hero.desc=document.getElementById('tHeroDesc').value;
+  settings.about.text=document.getElementById('tAboutText').value;
+
+  settings.contact.phone=document.getElementById('cnPhone').value;
+  settings.contact.address=document.getElementById('cnAddress').value;
+  settings.contact.mapEmbed=document.getElementById('cnMapEmbed').value;
+  settings.social.instagram=document.getElementById('snInstagram').value;
+  settings.social.telegram=document.getElementById('snTelegram').value;
+  settings.social.whatsapp=document.getElementById('snWhatsapp').value;
+  settings.music.url=document.getElementById('mMusicUrl').value;
+  settings.music.autoplay=document.getElementById('mAutoplay').checked;
+
+  await persistSettings();
+  renderAll();
+  observeReveals();
+  alert('✅ تغییرات با موفقیت روی سایت ذخیره و اعمال شد.');
+}
+
+/* ===================== INIT ===================== */
+loadData().then(()=>{ observeReveals(); });
+</script>
+</body>
+</html>
